@@ -1,6 +1,14 @@
 {
+    "name": "asassoye/esi-binome",
     "type": "project",
-    "license": "proprietary",
+    "license": "AGPL-3.0-only",
+    "version": "0.1.0-dev",
+    "authors": [
+        {
+            "name": "Andrew SASSOYE",
+            "email": "andrew@sassoye.be"
+        }
+    ],
     "require": {
         "php": ">=7.1.3",
         "ext-ctype": "*",

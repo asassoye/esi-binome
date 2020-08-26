@@ -1,10 +1,27 @@
-
-###> symfony/framework-bundle ###
+### Symfony ###
+# Env
 /.env.local
 /.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
+
+# Cache and logs
+/var/cache/*
+/var/log/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/log/.gitkeep
+!var/sessions/.gitkeep
+
+# Managed by Composer
+/var/bootstrap.php.cache
+/bin/*
+!bin/console
+!bin/symfony_requirements
 /vendor/
-###< symfony/framework-bundle ###
+
+# Build data
+/public/build/
+/public/bundles/
+
+### Jetbrains
+.idea/
