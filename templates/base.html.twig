@@ -6,7 +6,21 @@
 	{% block stylesheets %}{% endblock %}
 </head>
 <body>
-{% block body %}{% endblock %}
+{% block body %}
+	<h1>Hello world!</h1>
+	{% if app.user %}
+		<a href="{{ path('app_logout') }}">
+			Se déconnecter
+		</a>
+	{% else %}
+		<a href="{{ path('app_login') }}">
+			<p>Se connecter</p>
+		</a> <br>
+		<a href="{{ path('app_register') }}">
+			<p>S'inscrire</p>
+		</a>
+	{% endif %}
+{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>
 </html>
