@@ -19,9 +19,14 @@
 !bin/symfony_requirements
 /vendor/
 
-# Build data
-/public/build/
+# Assets
 /public/bundles/
 
-### Jetbrains
+### Webpack ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+
+### Jetbrains ###
 .idea/
