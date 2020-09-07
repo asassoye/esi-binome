@@ -14,5 +14,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+.colored {
+  background: $color-esi;
+  background: conic-gradient(from 135deg at 50% 50%, $color-esi 0deg, darken($color-esi, 15) 183.75deg, $color-esi 360deg);
+  border-radius: 1.5rem;
+  padding: 3rem;
 
+  h2 {
+    font-weight: 700;
+    line-height: 3rem;
+    color: white;
+    margin-bottom: 5rem;
+  }
+}

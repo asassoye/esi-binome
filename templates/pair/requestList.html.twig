@@ -1,0 +1,23 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Accepter une demande{% endblock %}
+
+{% block right %}
+	<h1>Accepter une demande</h1>
+	<p>Veuillez accepter une demande de binôme ci-dessous ou les refuser pour envoyer une demande a une autre
+		personne.</p>
+
+	{% for pair in pairs %}
+		<div class="card mb-2">
+			<div class="card-body">
+				<h5 class="card-title">
+					{{ pair.student1.firstName }} {{ pair.student1.lastName|upper }}
+					<small>vous a envoyé une demande de binôme.</small>
+				</h5>
+				<a href="{{ path('app_pair_accept', {'id': pair.id}) }}" class="btn btn-sm btn-primary">Accepter</a>
+				<a href="{{ path('app_pair_refuse', {'id': pair.id}) }}" class="btn btn-sm btn-warning">Refuser</a>
+			</div>
+		</div>
+	{% endfor %}
+
+{% endblock %}

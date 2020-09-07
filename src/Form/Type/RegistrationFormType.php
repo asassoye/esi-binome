@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Type;
 
 use App\Entity\User\User;
 use App\Validator\Constraints\IsMatriculate;
@@ -18,15 +18,27 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
+                'attr' => array(
+                    'placeholder' => "Matricule"
+                ),
                 'constraints' => [
                     new IsMatriculate()
                 ]
             ])
-            ->add('firstName')
-            ->add('lastName')
+            ->add('firstName', TextType::class, array(
+                'attr' => array(
+                    'placeholder' => "Prénom"
+                )
+            ))
+            ->add('lastName', TextType::class, array(
+                'attr' => array(
+                    'placeholder' => "Nom de famille"
+                )
+            ))
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+                'attr' => array(
+                    'placeholder' => "Mot de passe"
+                ),
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([

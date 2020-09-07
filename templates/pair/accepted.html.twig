@@ -1,0 +1,16 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Tout est en ordre!{% endblock %}
+
+{% block right %}
+	<h1>Tout est en ordre!</h1>
+	<p>Votre binôme a bien été enregistré. Have fun!</p>
+	<div class="card mb-2">
+		<div class="card-body">
+			<h5 class="card-title">
+				{{ pair.firstName }} {{ pair.lastName|upper }}
+				<small> est votre binôme.</small>
+			</h5>
+		</div>
+	</div>
+{% endblock %}

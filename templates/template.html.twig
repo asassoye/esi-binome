@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<main class="container" id="root">
+		<div class="row">
+			<aside class="col-12 col-lg-4 colored">
+				{% block left %}
+					<h2>Synchronise your timetable with your friends for more fun!</h2>
+				{% endblock %}
+			</aside>
+			<div class="col-12 col-lg-8 content">
+				{% block right %}
+				{% endblock %}
+			</div>
+		</div>
+	</main>
+	<footer class="container">
+		<p>
+			Copyright © 2020-{{ "now"|date("Y") }} Made with <i class="fas fa-heart"></i> for ESI under GNU Affero General
+			Public License. <br>
+			<small><a href="https://github.com/asassoye/esi-binome"><i class="fas fa-code-branch"></i> Source code</a> Feel
+				free to contribute!</small>
+		</p>
+	</footer>
+{% endblock %}

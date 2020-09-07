@@ -14,3 +14,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+$color-esi: #46a3d2;
+$primary: darken($color-esi, 10);
+
+$dark: #3A3B4A;
+$darker: #242631;
+
+$fa-font-path: "../webfonts";
+
+$font-family-sans-serif: 'Montserrat', "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;

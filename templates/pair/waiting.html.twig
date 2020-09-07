@@ -1,0 +1,18 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}En attente de confirmation{% endblock %}
+
+{% block right %}
+	<h1>En attente d'acceptation</h1>
+	<p>Votre demande a bien été envoyé. Il ne manque plus qu'a attendre la réponse.</p>
+
+	<div class="card mb-2">
+		<div class="card-body">
+			<h5 class="card-title">
+				{{ pair.firstName }} {{ pair.lastName|upper }}
+				<small>n'a pas encore accepté votre demande.</small>
+			</h5>
+			<a href="{{ path('app_pair_refuse', {'id': pair_id}) }}" class="btn btn-sm btn-warning">Annuler</a>
+		</div>
+	</div>
+{% endblock %}

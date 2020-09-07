@@ -14,3 +14,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+body {
+  background-color: $dark;
+  user-select: none;
+  padding-top: 2rem;
+}
+
+main#root {
+  background-color: $darker;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 19px 7px rgba(0, 0, 0, 0.1);
+  color: white;
+
+  .card {
+    background-color: $dark;
+  }
+
+  input {
+    background-color: $darker;
+  }
+}

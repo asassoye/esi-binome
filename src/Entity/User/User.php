@@ -17,7 +17,7 @@
 
 namespace App\Entity\User;
 
-use App\Repository\UserRepository;
+use App\Repository\User\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -90,6 +90,12 @@ class User implements UserInterface
      */
     private $isVerified = false;
 
+    public function __toString()
+    {
+        return (string)$this->username;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -100,7 +106,7 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return (string)$this->username;
     }

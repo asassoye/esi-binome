@@ -1,0 +1,9 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Faire une demande{% endblock %}
+
+{% block right %}
+	<h1>Choisir un binôme</h1>
+	<p>Entrez le matricule du binôme souhaité, une demande lui sera envoyée.</p>
+	{{ form(form) }}
+{% endblock %}

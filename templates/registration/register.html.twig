@@ -1,28 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Créer un compte{% endblock %}
 
-{% block body %}
+{% block right %}
+    <h1>Créer un compte</h1>
+    <p></p>
+
+    {{ form_start(registrationForm) }}
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1>S'inscrire</h1>
-
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.username, {
-        label: 'Matricule'
-    }) }}
-    {{ form_row(registrationForm.firstName, {
-        label: 'Prénom'
-    }) }}
-    {{ form_row(registrationForm.lastName, {
-        label: 'Nom de famille'
-    }) }}
-    {{ form_row(registrationForm.plainPassword, {
-        label: 'Mot de passe'
-    }) }}
-
-    <button type="submit" class="btn">Register</button>
+    <div class="row">
+        <div class="col-12 mb-3">
+            <div class="row">
+                <div class="col-6">
+                    {{ form_widget(registrationForm.firstName) }}
+                    {{ form_errors(registrationForm.firstName) }}
+                </div>
+                <div class="col-6">
+                    {{ form_widget(registrationForm.lastName) }}
+                    {{ form_errors(registrationForm.lastName) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    {{ form_widget(registrationForm.username) }}
+                    {{ form_errors(registrationForm.username) }}
+                </div>
+                <div class="col-6">
+                    {{ form_widget(registrationForm.plainPassword) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="my-4">
+    <p class="mt-4">
+        <button class="btn btn-sm btn-primary btn-block" type="submit">
+            <i class="fas fa-fw fa-user-plus"></i> Créer mon compte
+        </button>
+        <a class="btn btn-sm btn-dark btn-block" href="{{ path('app_login') }}"><i class="fas fa-fw fa-sign-in-alt"></i>
+            Se connecter</a></p>
     {{ form_end(registrationForm) }}
 {% endblock %}
