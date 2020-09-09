@@ -99,6 +99,14 @@ class PairController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            if (!$this->getUser()->isVerified()) {
+                $this->addFlash("error",
+                    "Votre compte n'est pas encore verifié. 
+                    Veuillez verifier vos mails et confirmer votre identité avant de pouvoir faire une demande");
+
+                return $this->redirectToRoute("app_pair_create");
+            }
+
             $user = $form->getData()["student"];
 
             $pair = new Pair();
@@ -107,6 +115,13 @@ class PairController extends AbstractController
 
             $em->persist($pair);
             $em->flush();
+
+            $this->addFlash('success',
+                sprintf("La demande a bien été envoyé à %s %s",
+                    $pair->getStudent2()->getFirstName(),
+                    strtoupper($pair->getStudent2()->getLastName())
+                )
+            );
 
             return $this->redirectToRoute('app_pair_status');
         }
@@ -138,9 +153,24 @@ class PairController extends AbstractController
             throw new AccessDeniedHttpException("Vous n'avez pas le droit d'accepter la demande d'un autre étudiant");
         }
 
+        if (!$this->getUser()->isVerified()) {
+            $this->addFlash("error",
+                "Votre compte n'est pas encore verifié. 
+                    Veuillez verifier vos mails et confirmer votre identité avant de pouvoir accepter une demande");
+
+            return $this->redirectToRoute("app_pair_create");
+        }
+
         $pair->setAccepted(true);
         $em->persist($pair);
         $em->flush();
+
+        $this->addFlash('success',
+            sprintf("La demande de %s %s a été accepté",
+                $pair->getStudent2()->getFirstName(),
+                strtoupper($pair->getStudent2()->getLastName())
+            )
+        );
 
         $em->getRepository(Pair::class)->refuseAllExceptOne($this->getUser()->getId(), $pair->getId());
 
@@ -168,6 +198,20 @@ class PairController extends AbstractController
         if (!($pair->getStudent2() == $this->getUser() || $pair->getStudent1() == $this->getUser())) {
             throw new AccessDeniedHttpException("Vous n'avez pas le droit refuser la demande d'un autre étudiant");
         }
+
+        if (!$this->getUser()->isVerified()) {
+            $this->addFlash("error",
+                "Votre compte n'est pas encore verifié. 
+                    Veuillez verifier vos mails et confirmer votre identité avant de pouvoir refuser une demande");
+
+            return $this->redirectToRoute("app_pair_create");
+        }
+
+        if ($pair->isAccepted()) {
+            $this->addFlash('warning', "Cette demande a déja été acceptée.");
+        }
+
+        $this->addFlash('success', "La demande de binôme a bien été supprimé.");
 
         $em->remove($pair);
         $em->flush();

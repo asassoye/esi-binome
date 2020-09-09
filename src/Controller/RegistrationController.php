@@ -1,4 +1,19 @@
 <?php
+/*
+ * Copyright (C) 2020 Andrew SASSOYE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 namespace App\Controller;
 
@@ -30,6 +45,12 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
+        if ($this->getUser()) {
+            $this->addFlash('warning', "Vous êtes déjà connecté.");
+
+            return $this->redirectToRoute('app_index');
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -60,8 +81,11 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            $this->addFlash('success', 'Un email de verification vous a été envoyé');
+            $this->addFlash('success',
+                'Un email de verification vous a été envoyé. 
+                Vous devez verifier votre identité avant de pouvoir continuer.');
 
+            $guardHandler->authenticateUserAndHandleSuccess($user, $request, $authenticator, 'main');
             return $this->redirectToRoute('app_index');
         }
 
@@ -81,14 +105,12 @@ class RegistrationController extends AbstractController
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
-
+            $this->addFlash('error', $exception->getReason());
             return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_index');
     }
 }

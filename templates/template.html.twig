@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
 	<main class="container" id="root">
 		<div class="row">
 			<aside class="col-12 col-lg-4 colored">
@@ -9,6 +10,38 @@
 				{% endblock %}
 			</aside>
 			<div class="col-12 col-lg-8 content">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success" role="alert">
+						{{ message }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				{% endfor %}
+				{% for message in app.flashes('warning') %}
+					<div class="alert alert-warning" role="alert">
+						{{ message }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				{% endfor %}
+				{% for message in app.flashes('error') %}
+					<div class="alert alert-danger" role="alert">
+						{{ message }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				{% endfor %}
+				{% for message in app.flashes('info') %}
+					<div class="alert alert-primary" role="alert">
+						{{ message }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				{% endfor %}
 				{% block right %}
 				{% endblock %}
 			</div>
