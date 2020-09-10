@@ -34,7 +34,7 @@
       "symfony/maker-bundle": "^1.21",
       "symfony/stopwatch": "^4.4",
       "symfony/twig-bundle": "^4.4",
-      "symfony/web-profiler-bundle": "^4.4"
+      "symfony/web-profiler-bundle": "^5.0"
     },
     "config": {
         "preferred-install": {
