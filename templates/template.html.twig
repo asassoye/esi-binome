@@ -10,6 +10,12 @@
 				{% endblock %}
 			</aside>
 			<div class="col-12 col-lg-8 content">
+				{% if app.user %}
+					<a href="{{ path('app_logout') }}" class="btn btn-sm btn-dark"
+					   style="display: block; position: absolute; top: 1rem; right: 1rem;">
+						<i class="fas fa-fw fa-sign-out-alt"></i>
+					</a>
+				{% endif %}
 				{% for message in app.flashes('success') %}
 					<div class="alert alert-success" role="alert">
 						{{ message }}
