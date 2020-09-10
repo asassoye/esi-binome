@@ -109,6 +109,13 @@ class PairController extends AbstractController
 
             $user = $form->getData()["student"];
 
+            if ($this->getUser() == $user) {
+                $this->addFlash("error",
+                    "Votre ne pouvez pas vous inviter vous-même..");
+
+                return $this->redirectToRoute("app_pair_create");
+            }
+
             $pair = new Pair();
             $pair->setStudent1($this->getUser());
             $pair->setStudent2($user);
