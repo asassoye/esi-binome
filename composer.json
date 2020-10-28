@@ -25,7 +25,7 @@
         "symfony/framework-bundle": "4.4.*",
         "symfony/mailer": "4.4.*",
         "symfony/security-bundle": "4.4.*",
-        "symfony/validator": "4.4.*",
+        "symfony/validator": "5.1.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.4.*",
         "symfonycasts/verify-email-bundle": "^1.0"
