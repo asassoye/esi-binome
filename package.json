@@ -8,7 +8,7 @@
         "popper.js": "^1.16.1",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "^8.0",
-        "webpack-notifier": "^1.6.0"
+        "webpack-notifier": "^1.11.1"
     },
     "name": "esi-binome",
     "license": "AGPL-3.0-only",
